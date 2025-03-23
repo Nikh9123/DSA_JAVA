@@ -1,0 +1,37 @@
+# Ignore Java class files
+*.class
+
+# Ignore package files
+*.jar
+*.war
+*.ear
+
+# Ignore logs
+*.log
+
+# Ignore IDE-specific files
+/.idea/
+/*.iml
+/.vscode/
+/*.classpath
+/*.project
+/.settings/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore build directories
+/bin/
+/build/
+/out/
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.bak
+*.~*
+
+# Ignore compiled files
+*.o
+*.obj
