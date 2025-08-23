@@ -12,11 +12,13 @@ public class Introduction {
     public static void printAdjacencyMatrix(int[][]adjacencyMatrix) {
         /*matrix means array ke ander array 
         [
-        [1,2,3,4] 
-        [5,6,7,8] 
-        [9,10,11,12]
-        ](4*3) matrix  
+        [0, 1, 1, 0] 
+        [0, 0, 1, 1] 
+        [0, 0 ,0, 0]
+        [0, 0, 0, 0]
+        ](4 * 4) matrix  
         */
+
         for(int i  = 0 ; i < adjacencyMatrix.length ; i++){
             for(int j = 0 ; j < adjacencyMatrix[i].length ; j++){
                 System.out.print(adjacencyMatrix[i][j] + " ");
@@ -61,6 +63,7 @@ public class Introduction {
 
    // Method to print the adjacency list
     public static void printAdjacencyList(HashMap<Integer, List<Integer>> adjacencyMap) {
+
         for (Map.Entry<Integer, List<Integer>> entry : adjacencyMap.entrySet()) {
             System.out.print(entry.getKey() + ": ");
             for (Integer neighbor : entry.getValue()) {
@@ -68,6 +71,7 @@ public class Introduction {
             }
             System.out.println();
         }
+        
     }
     public static void main(String[] args) {
         // Define the number of nodes in the graph
@@ -78,7 +82,6 @@ public class Introduction {
                 { 0, 1 },
                 { 1, 2 },
                 { 1, 3 },
-                { 1, 2 },
                 { 0, 2 }
         };
         // representing through ADJACENCY LIST

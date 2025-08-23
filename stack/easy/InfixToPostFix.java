@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Stack;
 
+import arrays.easy.Solution;
+
 public class InfixToPostFix {
     public static void main(String[] args) {
         String s = "a+b*(c^d-e)^(f+g*h)-i";
