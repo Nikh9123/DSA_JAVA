@@ -6,7 +6,9 @@ import java.util.Stack;
 
 public class DetectCycle {
 
-        boolean isCycle(List<ArrayList<Integer>> adj, boolean visited[], int u, int parent) {
+        //Iterative method using DFS
+        boolean isCycleDFS(List<ArrayList<Integer>> adj, boolean visited[], int parent) {
+        int u = 0 ;
         Stack<ArrayList<Integer>> stack = new Stack<>();
     
         ArrayList<Integer> nodes = new ArrayList<>();
@@ -40,6 +42,28 @@ public class DetectCycle {
         }
         return false;
     }
+    
+    boolean isCycleDFS(List<ArrayList<Integer>>adj, boolean visited[], int u, int parent){
+        visited[u] = true ;
+
+        for(Integer node : adj.get(u)){
+            if(node != parent){
+                return true ;
+            }
+            if(isCycleDFS(adj, visited, node, u)) return true ;
+        }
+
+        return false ;
+    }
+
+    boolean isCycleBFSIterative(){
+        return false ;
+    }
+
+    boolean isCycleBFSRecursive(){
+        return false ;
+    }
+
     public void main(String[] args) {
         //undirected graph
         int edges[][] = {
@@ -83,6 +107,7 @@ public class DetectCycle {
         }
         
         boolean visited[] = new boolean[adj.size()] ;
-        System.out.println(isCycle(adj, visited, 0, -1));
+        System.out.println(isCycleDFS(adj, visited, -1));//iterative
+        System.out.println(isCycleDFS(adj, visited, 0, -1));//recursive
     }
 }

@@ -3,10 +3,20 @@ package recursion.easy;
 public class NFactorial {
 
     public static int nFactorial(int n, int ans){
-        if(n == 0 || n == 1){
-            return 1 ;
+        ans = 1 ;
+
+        for(int i = 1 ; i <= n ; i++){
+            ans = ans * i ;
         }
-        ans = n * nFactorial(n-1, ans) ;
+        return ans ;
+    }
+
+    public static int nFactorialRecursion(int n, int ans){
+        if(n == 0){
+            return 0 ;
+        }
+
+        ans = ans * nFactorial(n-1, ans) ;
         return ans ;
     }
     public static void main(String[] args) {
