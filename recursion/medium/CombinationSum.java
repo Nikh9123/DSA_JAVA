@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class CombinationSum {
     public void combinationSumHelper(int[] candidates, List<Integer> list, List<List<Integer>> ans, int i, int target) {
+    //we can take duplicates combination also
         if (i >= candidates.length) {
             if (target == 0) {
                 ans.add(new ArrayList<>(list));// list
@@ -26,7 +27,7 @@ public class CombinationSum {
     }
 
     void combinationSumHelper2(int[] candidates, List<Integer> list, List<List<Integer>> ans, int start, int target) {
-
+//isme we are skipping duplicates combination
         if (target == 0) {
             ans.add(new ArrayList<>(list));
             return ;
