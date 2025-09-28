@@ -16,7 +16,7 @@ public class Permutation {
         }
     }
 
-    private void recurPermute(int index, int[] nums, List < List < Integer >> ans) {
+    private void recurPermute(int index, int[] nums, List < List < Integer >> ans) { //optimmal approach
         if (index == nums.length) {
             // copy the ds to ans
             List < Integer > ds = new ArrayList < > ();
@@ -37,8 +37,29 @@ public class Permutation {
         nums[i] = nums[j];
         nums[j] = t;
     }
+
+    public void permuteHelper(int[] nums, List<List<Integer>>ans, List<Integer>list, boolean freq[]) { //using extra space --> brute force
+        if(list.size() == nums.length){
+            ans.add(new ArrayList<>(list)) ;
+            return ;
+        }
+
+        for(int i = 0 ; i < nums.length ; i++){
+            if(freq[i] == false){
+                freq[i] = true ;
+                list.add(nums[i]) ;
+                permuteHelper(nums, ans, list, freq);
+                freq[i] = false ;
+                list.remove(list.size()-1) ;
+            }
+        }
+    }
+
     public List < List < Integer >> permute(int[] nums) {
-        List < List < Integer >> ans = new ArrayList < > ();
+        List < List < Integer >> ans = new ArrayList <> ();
+        List<Integer>list = new ArrayList<>() ;
+        boolean freq[] = new boolean[nums.length] ;
+        permuteHelper(nums, ans, list, freq);
         recurPermute(0, nums, ans);
         return ans;
     }
