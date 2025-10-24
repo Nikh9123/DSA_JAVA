@@ -54,6 +54,32 @@ public class BasicPractice {
         return functionalFibonacci(n - 1) + functionalFibonacci(n - 2);
     }
 
+    void reverseArray(int[] arr, int i, int j){
+        if(i >= j){
+            return ;
+        }
+
+        swap(i, j, arr);
+        reverseArray(arr, i+1, j-1);
+    }
+
+    void swap(int i, int j, int[] arr){
+        int temp = arr[j] ;
+        arr[j] = arr[i] ;
+        arr[i] = temp ;
+    }
+
+    void reverseArray(int[] arr){
+        int i = 0 , j = arr.length-1 ;
+
+        while (i <= j) {
+            swap(i, j, arr);
+            i++ ;
+            j-- ;
+        }
+
+    }
+    
     public void main(String[] args) {
         // printNamesNTime(5);
         // print1toN(4);
@@ -62,5 +88,11 @@ public class BasicPractice {
         int sum = functionSum(10);
         System.out.println(ans + " " + sum + "\nfactorial : " + functionalFactorial(4) + "\nFibonacci : "
                 + functionalFibonacci(5));
+
+        int arr[] = new int[]{1,2,3,4} ;
+        reverseArray(arr, 0, arr.length-1);
+        for(int i = 0 ; i < arr.length; i++){
+            System.out.print(arr[i] + " ");
+        }
     }
 }

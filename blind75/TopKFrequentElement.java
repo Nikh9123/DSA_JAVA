@@ -5,25 +5,31 @@ import java.util.*;
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
+
+        // Step 1: Count frequencies
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // Step 2: Store as list of pairs (num, freq)
+        List<int[]> list = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            list.add(new int[]{entry.getKey(), entry.getValue()});
+        }
+
+        // Step 3: Sort by frequency descending
+        list.sort((a, b) -> b[1] - a[1]);
+
+        // Step 4: Pick top k elements
         int[] ans = new int[k];
-        ArrayList<Integer> list = new ArrayList<>();
-
-        for (int i = 0; i < nums.length; i++) {
-            map.putIfAbsent(nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
-
-        for (Integer value : map.values()) {
-            list.add(value);
-        }
-
-        Collections.sort(list);
-
         for (int i = 0; i < k; i++) {
-            ans[i] = list.get(list.size() - i - 1);
+            ans[i] = list.get(i)[0];
         }
+
         return ans;
     }
 }
+
 
 public class TopKFrequentElement {
     public int[] topKFrequent(int[] nums, int k) {
