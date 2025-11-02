@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class CombinationSum {
-    public void combinationSumHelper(int[] candidates, List<Integer> list, List<List<Integer>> ans, int i, int target) {
+    public static void combinationSumHelper(int[] candidates, List<Integer> list, List<List<Integer>> ans, int i, int target) {
     //we can take duplicates combination also
         if (i >= candidates.length) {
             if (target == 0) {
@@ -26,7 +26,7 @@ public class CombinationSum {
         combinationSumHelper(candidates, list, ans, i + 1, target);
     }
 
-    void combinationSumHelper2(int[] candidates, List<Integer> list, List<List<Integer>> ans, int start, int target) {
+    static void combinationSumHelper2(int[] candidates, List<Integer> list, Set<List<Integer>> ans, int start, int target) {
 //isme we are skipping duplicates combination
         if (target == 0) {
             ans.add(new ArrayList<>(list));
@@ -42,7 +42,7 @@ public class CombinationSum {
         }
     }
 
-    void combinationSumHelper2(int[] candidates, List<Integer> list, Set<List<Integer>> ans, int i, int target) {
+    static void combinationSumHelper2(int[] candidates, List<Integer> list, List<List<Integer>> ans, int i, int target) {
         if (i >= candidates.length) {
             if (target == 0) {
                 ans.add(new ArrayList<>(list));
@@ -51,9 +51,11 @@ public class CombinationSum {
         }
         if (target >= candidates[i]) {
             list.add(candidates[i]);
+            System.out.println("adding into list : " + candidates[i]);
             combinationSumHelper2(candidates, list, ans, i + 1, target - candidates[i]);
             list.removeLast();
         }
+        System.out.println("calling right index value:  "+ (i+1) );
         combinationSumHelper2(candidates, list, ans, i + 1, target);
     }
 
@@ -65,22 +67,23 @@ public class CombinationSum {
         return ans;
     }
 
-    public HashSet<List<Integer>> combinationSum2(int[] candidates, int target) {
-        HashSet<List<Integer>> ans = new HashSet<List<Integer>>();
-        combinationSumHelper2(candidates, new ArrayList<>(), ans, 0, target);
+    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        HashSet<List<Integer>> ans = new HashSet<>();
+        List<List<Integer>>ans1 = new ArrayList<>() ;
+        combinationSumHelper2(candidates, new ArrayList<>(), ans1, 0, target);
         // Convert HashSet<List<Integer>> to List<List<Integer>>
         // If you want to return List<List<Integer>> instead of HashSet
         // List<List<Integer>> result = new ArrayList<>(ans);
-        combinationSumHelper2(candidates, new ArrayList<>(), ans, 0, target);
+        // combinationSumHelper2(candidates, new ArrayList<>(), ans, 0, target);
         // return result;
-        return ans;
+        return ans1;
     }
 
-    public void main(String[] str) {
-        int[] candidates = new int[] { 10, 1, 2, 7, 6, 1, 5 };
+    public static void main(String[] str) {
+        int[] candidates = new int[] { 1,1,2,5,6,7,10 };
         int target = 8;
         Arrays.sort(candidates);
-        HashSet<List<Integer>> ans = combinationSum2(candidates, target);
+        List<List<Integer>> ans = combinationSum2(candidates, target);
         
         for (List<Integer> combination : ans) {
             System.out.println();
